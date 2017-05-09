@@ -1,3 +1,5 @@
-# MEAN01
-a onlinestore bulit with angularjs2 bootstrap4 and express 
+# MEAN03
 
+## how to use it
+npm install --unsafe-perm
+npm start
