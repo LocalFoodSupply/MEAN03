@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CartModule} from './cart/cart.module';
 import {CategoryModule} from './category/category.module';
 import {ProductModule} from './product/product.module';
-
+import {LocationStrategy, HashLocationStrategy , PathLocationStrategy} from '@angular/common';
 /*
  * Components
  */
@@ -30,6 +30,8 @@ import {AppRoutes}  from './app.routes';
             RouterModule.forRoot(AppRoutes), CartModule, CategoryModule, ProductModule],
   declarations: [AppComponent, NavbarComponent, FooterComponent,CheckoutViewComponent,
                 WelcomeComponent],
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

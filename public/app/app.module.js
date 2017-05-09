@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/platform-browser", "@angular/forms", "./cart/cart.module", "./category/category.module", "./product/product.module", "./checkout/checkout-view.component", "./app.component", "./navbar/navbar.component", "./footer/footer.component", "./welcome/welcome.component", "@angular/router", "./app.routes"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/platform-browser", "@angular/forms", "./cart/cart.module", "./category/category.module", "./product/product.module", "@angular/common", "./checkout/checkout-view.component", "./app.component", "./navbar/navbar.component", "./footer/footer.component", "./welcome/welcome.component", "@angular/router", "./app.routes"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["@angular/core", "@angular/platform-browser", "@angular/forms",
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, platform_browser_1, forms_1, cart_module_1, category_module_1, product_module_1, checkout_view_component_1, app_component_1, navbar_component_1, footer_component_1, welcome_component_1, router_1, app_routes_1, AppModule;
+    var core_1, platform_browser_1, forms_1, cart_module_1, category_module_1, product_module_1, common_1, checkout_view_component_1, app_component_1, navbar_component_1, footer_component_1, welcome_component_1, router_1, app_routes_1, AppModule;
     return {
         setters: [
             function (core_1_1) {
@@ -27,6 +27,9 @@ System.register(["@angular/core", "@angular/platform-browser", "@angular/forms",
             },
             function (product_module_1_1) {
                 product_module_1 = product_module_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             },
             function (checkout_view_component_1_1) {
                 checkout_view_component_1 = checkout_view_component_1_1;
@@ -62,6 +65,8 @@ System.register(["@angular/core", "@angular/platform-browser", "@angular/forms",
                         router_1.RouterModule.forRoot(app_routes_1.AppRoutes), cart_module_1.CartModule, category_module_1.CategoryModule, product_module_1.ProductModule],
                     declarations: [app_component_1.AppComponent, navbar_component_1.NavbarComponent, footer_component_1.FooterComponent, checkout_view_component_1.CheckoutViewComponent,
                         welcome_component_1.WelcomeComponent],
+                    providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }
+                    ],
                     bootstrap: [app_component_1.AppComponent]
                 })
             ], AppModule);
