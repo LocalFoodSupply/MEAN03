@@ -29,13 +29,13 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                     this.cart = new Cart();
                 }
                 /**
-                 * This method adds the new produc.server.controller.js or increases the number
+                 * This method adds the new product.server.controller.js or increases the number
                  * of the same products in the cart.
                  * It updates the amount and count of items in the cart.
                  */
                 CartService.prototype.addProduct = function (product) {
                     // Find CartItem in items
-                    var item = this.findItem(product.id);
+                    var item = this.findItem(product.prod);
                     // Check was it found?
                     if (item) {
                         // Item was found.
@@ -63,19 +63,19 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                 };
                 /**
                  * This method decreases the number of the same products
-                 * in the cart or removes the last produc.server.controller.js.
+                 * in the cart or removes the last product.server.controller.js.
                  * It updates the amount and count of items in the cart.
                  */
                 CartService.prototype.removeProduct = function (product) {
                     // Find CartItem in items
-                    var item = this.findItem(product.id);
+                    var item = this.findItem(product.prod);
                     // Check is item found?
                     if (item) {
                         // Decrease the count
                         item.count--;
-                        // Check was that the last produc.server.controller.js?
+                        // Check was that the last product.server.controller.js?
                         if (!item.count) {
-                            // It was last produc.server.controller.js
+                            // It was last product.server.controller.js
                             // Delete item from items
                             this.remove(item);
                         }
@@ -99,11 +99,11 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                     this.cart.amount -= item.amount;
                 };
                 /**
-                 * This method returns cart item by produc.server.controller.js id or null.
+                 * This method returns cart item by product.server.controller.js id or null.
                  */
                 CartService.prototype.findItem = function (id) {
                     for (var i = 0; i < this.cart.items.length; i++) {
-                        if (this.cart.items[i].product.id === id) {
+                        if (this.cart.items[i].product.prod === id) {
                             return this.cart.items[i];
                         }
                     }

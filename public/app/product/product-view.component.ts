@@ -36,8 +36,9 @@ export class ProductViewComponent {
                 // Get the product id
                 let id: string = params['id'];
                 // Return the product from ProductService
-                this.product = this.productService.getProduct(id);
-                // Return the cart item
+                this.productService.getProduct(id);
+                this.product =this.productService.product;
+                    // Return the cart item
                 this.cartItem = this.cartService.findItem(id);
             });
     }

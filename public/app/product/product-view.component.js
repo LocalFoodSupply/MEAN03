@@ -39,7 +39,8 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
                         // Get the product id
                         var id = params['id'];
                         // Return the product from ProductService
-                        _this.product = _this.productService.getProduct(id);
+                        _this.productService.getProduct(id);
+                        _this.product = _this.productService.product;
                         // Return the cart item
                         _this.cartItem = _this.cartService.findItem(id);
                     });

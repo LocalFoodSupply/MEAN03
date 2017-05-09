@@ -55,6 +55,7 @@ module.exports = function() {
 	//先解决依赖 在搞路由 顺序相反导致js文件不能正确加载
     require('../app/routes/index.server.routes.js')(app);
      require('../app/routes/users.server.routes.js')(app);
+     require("../app/routes/product.server.routes")(app);
 	// Return the Express application instance
 	return app;
 };

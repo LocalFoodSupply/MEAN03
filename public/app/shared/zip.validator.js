@@ -49,8 +49,8 @@ System.register(["@angular/core", "@angular/forms"], function (exports_1, contex
             //验证器只提供返回值，由formbuilder.group指令来对返回值进行读取，然后对form进行valid与否的设置
             //Angular 2 通过引入 forwardRef 让我们可以在使用构造注入时，使用尚未定义的依赖对象类型。
             //*NgIf 实际是模板上的[NgIf]  [NgSwitch]+*NgSwitchWhen  [NgClass]
-            //*NgFor=“let produc.server.controller.js of products”  microsyntax 使用微函数式创建product变量传递给模板，加上
-            // ; trackBy：produc.server.controller.js.id;避免DOM重建
+            //*NgFor=“let product.server.controller.js of products”  microsyntax 使用微函数式创建product变量传递给模板，加上
+            // ; trackBy：product.server.controller.js.id;避免DOM重建
             //指令对DOM元素或者布局进行更改----------------指令是具有指定@Directive装饰器的类。
         }
     };

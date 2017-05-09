@@ -18,19 +18,21 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import { RouterModule }   from '@angular/router';
-
+import { HttpModule } from '@angular/http';
 /*
  * Routing
  */
 import {AppRoutes}  from './app.routes';
 
+import { AuthenticationService } from './authentication/authentication.service';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, 
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule,AuthenticationModule,HttpModule,
             RouterModule.forRoot(AppRoutes), CartModule, CategoryModule, ProductModule],
   declarations: [AppComponent, NavbarComponent, FooterComponent,CheckoutViewComponent,
                 WelcomeComponent],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy }
+    providers: [AuthenticationService,{provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
   bootstrap: [AppComponent]
 })

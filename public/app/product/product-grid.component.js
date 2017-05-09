@@ -40,9 +40,10 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
                         var category = params['category'];
                         var search = params['search'];
                         // Return filtered data from getProducts function
-                        var products = _this.productService.getProducts(category, search);
+                        _this.productService.getProducts(category);
                         // Transform products to appropriate data
                         // to display
+                        var products = _this.productService.products;
                         _this.products = _this.transform(products);
                     });
                 }

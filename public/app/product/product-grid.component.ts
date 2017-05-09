@@ -24,9 +24,10 @@ export class ProductGridComponent {
                 let category: string = params['category'];
                 let search: string = params['search'];
                 // Return filtered data from getProducts function
-                let products: Product[] = this.productService.getProducts(category, search);
+                this.productService.getProducts(category);
                 // Transform products to appropriate data
                 // to display
+                let products: Product[] = this.productService.products;
                 this.products = this.transform(products);
             });
     }
