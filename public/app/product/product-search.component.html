@@ -1,12 +1,12 @@
 <div class="card">
     <div class="card-header">Quick Shop</div>
     <div class="input-group">
-        <input #search type="text" class="form-control" placeholder="Search for..." 
-              (keyup)="searchChanged(search.value)">
+        <input #search type="text" class="form-control" placeholder="Search for..."
+               (keyup)="searchChanged(search.value)" (keydown)="searchenter($event,search.value)" (keyup)="searchProduct(search.value)">
+        <!-- #search == id =search 表示其id-->
         <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button" 
-                   [disabled]="disabled"
-                   (click)="searchProduct(search.value)">Go!</button>
+            <button class="btn btn-secondary" type="button" (click)="searchProduct(search.value) "
+                    [disabled]="disabled" >搜</button>
         </span>
     </div>
 </div>

@@ -1,1 +1,5 @@
-<db-product-card *ngFor="let row of products" [products]="row" (addToCart)="addToCart($event)"></db-product-card>
+
+<db-product-card *ngFor="let row of products"
+                 [products]="row"  (addToCart)="addToCart($event)"></db-product-card>
+<!--对products属性的重新赋值，使其变成3个产品为一行，再在一行内对card-deck进行排序，wraaper只能排一行-->
+

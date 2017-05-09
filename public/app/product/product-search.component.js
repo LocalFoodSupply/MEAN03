@@ -29,8 +29,13 @@ System.register(["@angular/core", "@angular/router"], function (exports_1, conte
                 ProductSearchComponent.prototype.searchProduct = function (value) {
                     this.router.navigate(['/products'], { queryParams: { search: value } });
                 };
+                ;
+                ProductSearchComponent.prototype.searchenter = function (event, value) { if (event.keyCode == 13) {
+                    this.searchProduct(value);
+                } };
+                ;
                 ProductSearchComponent.prototype.searchChanged = function (value) {
-                    // Update the disabled property depends on value 
+                    // Update the disabled property depends on value
                     if (value) {
                         this.disabled = false;
                     }
@@ -48,6 +53,8 @@ System.register(["@angular/core", "@angular/router"], function (exports_1, conte
                 __metadata("design:paramtypes", [router_1.Router])
             ], ProductSearchComponent);
             exports_1("ProductSearchComponent", ProductSearchComponent);
+            //我们不能CartItem在将产品添加到购物车之前显示信息。
+            // 为了解决这个问题，我们介绍了getter方法count和amount属性：
         }
     };
 });

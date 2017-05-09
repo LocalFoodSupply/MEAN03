@@ -4,7 +4,7 @@ import {Product} from '../product/product.service';
 
 export interface CartItem {
     product: Product;
-    count: number;
+    count:  number;
     amount: number;
 }
 
@@ -20,11 +20,11 @@ export class CartService {
     cart: Cart = new Cart();
 
     /**
-     * This method adds the new product or increases the number
+     * This method adds the new produc.server.controller.js or increases the number
      * of the same products in the cart.
      * It updates the amount and count of items in the cart.
      */
-    addProduct(product: Product): CartItem {
+    addProduct(product: Product) {
         // Find CartItem in items
         let item: CartItem = this.findItem(product.id);
         // Check was it found?
@@ -54,32 +54,28 @@ export class CartService {
 
     /**
      * This method decreases the number of the same products
-     * in the cart or removes the last product.
+     * in the cart or removes the last produc.server.controller.js.
      * It updates the amount and count of items in the cart.
      */
-    removeProduct(product: Product): CartItem {
+    removeProduct(product: Product) {
         // Find CartItem in items
         let item: CartItem = this.findItem(product.id);
         // Check is item found?
         if (item) {
             // Decrease the count
             item.count--;
-            // Substract price
-            item.amount -= product.price;
-            // Check was that the last product?
+            // Check was that the last produc.server.controller.js?
             if (!item.count) {
-                // It was last product
+                // It was last produc.server.controller.js
                 // Delete item from items
                 this.remove(item);
-                // We must return null
-                item = null;
             }
             // Decrease count in the cart
             this.cart.count--;
             // Decrease amount in the cart
             this.cart.amount -= product.price;
+            return item;
         }
-        return item;
     }
 
     /**
@@ -96,7 +92,7 @@ export class CartService {
     }
 
     /**
-     * This method returns cart item by product id or null.
+     * This method returns cart item by produc.server.controller.js id or null.
      */
     findItem(id: string): CartItem {
         for (let i = 0; i < this.cart.items.length; i++) {
@@ -105,15 +101,6 @@ export class CartService {
             }
         }
         return null;
-    }
-
-    /**
-     * This method remove all products and clean ammount and items.
-     */
-    clearCart() {
-        this.cart.items = [];
-        this.cart.amount = 0;
-        this.cart.count = 0;
     }
 
     /**
@@ -127,5 +114,10 @@ export class CartService {
             // Remove element from array
             this.cart.items.splice(indx, 1);
         }
+    }
+    clearCart() {
+        this.cart.items = [];
+        this.cart.amount = 0;
+        this.cart.count = 0;
     }
 }

@@ -29,7 +29,7 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                     this.cart = new Cart();
                 }
                 /**
-                 * This method adds the new product or increases the number
+                 * This method adds the new produc.server.controller.js or increases the number
                  * of the same products in the cart.
                  * It updates the amount and count of items in the cart.
                  */
@@ -63,7 +63,7 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                 };
                 /**
                  * This method decreases the number of the same products
-                 * in the cart or removes the last product.
+                 * in the cart or removes the last produc.server.controller.js.
                  * It updates the amount and count of items in the cart.
                  */
                 CartService.prototype.removeProduct = function (product) {
@@ -73,22 +73,18 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                     if (item) {
                         // Decrease the count
                         item.count--;
-                        // Substract price
-                        item.amount -= product.price;
-                        // Check was that the last product?
+                        // Check was that the last produc.server.controller.js?
                         if (!item.count) {
-                            // It was last product
+                            // It was last produc.server.controller.js
                             // Delete item from items
                             this.remove(item);
-                            // We must return null
-                            item = null;
                         }
                         // Decrease count in the cart
                         this.cart.count--;
                         // Decrease amount in the cart
                         this.cart.amount -= product.price;
+                        return item;
                     }
-                    return item;
                 };
                 /**
                  * Remove item from the cart.
@@ -103,7 +99,7 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                     this.cart.amount -= item.amount;
                 };
                 /**
-                 * This method returns cart item by product id or null.
+                 * This method returns cart item by produc.server.controller.js id or null.
                  */
                 CartService.prototype.findItem = function (id) {
                     for (var i = 0; i < this.cart.items.length; i++) {
@@ -112,14 +108,6 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                         }
                     }
                     return null;
-                };
-                /**
-                 * This method remove all products and clean ammount and items.
-                 */
-                CartService.prototype.clearCart = function () {
-                    this.cart.items = [];
-                    this.cart.amount = 0;
-                    this.cart.count = 0;
                 };
                 /**
                  * This method removes existing cart item.
@@ -132,6 +120,11 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                         // Remove element from array
                         this.cart.items.splice(indx, 1);
                     }
+                };
+                CartService.prototype.clearCart = function () {
+                    this.cart.items = [];
+                    this.cart.amount = 0;
+                    this.cart.count = 0;
                 };
                 return CartService;
             }());
