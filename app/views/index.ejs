@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>你的第一个角</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/">
+</head>
+<body>
+<mean-app>
+....
+</mean-app>
+	
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+
+    <script src="lib/core-js/client/shim.min.js"></script>
+	<script src="/dist/zone.min.js"></script>
+	<script src="/dist/Reflect.js"></script>
+	<script src="/dist/jquery.min.js"></script>
+    <script src="/dist/tether.min.js"></script>
+    <script src="/dist/bootstrap.min.js"></script>
+
+
+    <script src="lib/systemjs/dist/system.js"></script>
+    <script src="systemjs.config.js"></script>
+
+  <script>
+      System.import("app").catch(function(err){ console.error(err); });
+  </script>
+
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+<!-- css需要在app导入后引入 才能保证渲染的一致性 -->
+</body>
+</html>
