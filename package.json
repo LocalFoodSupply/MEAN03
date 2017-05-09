@@ -23,7 +23,6 @@
     "@angular/http": "^4.0.3",
     "@angular/platform-browser": "^4.0.3",
     "@angular/platform-browser-dynamic": "^4.0.3",
-    "@angular/platform-server": "^4.0.3",
     "@angular/router": "^4.0.3",
     "@angular/upgrade": "^4.0.3",
     "body-parser": "1.15.2",
