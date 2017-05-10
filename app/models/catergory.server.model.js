@@ -4,11 +4,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Categoryschema = Schema({
-    name:{
+    title:{
         type:String,
         unique:true,
         lowercase:true
-    }
+    },
+    desc:String,
+    imageS:String,
+    imageL:String,
+    id:String,
+
 });
 
 //#2 create model

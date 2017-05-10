@@ -16,7 +16,7 @@
                                 <td>{{item.product.title}}</td>
                                 <td>{{item.product.price | currency:'USD':true:'1.2-2'}}</td>
                                 <td>
-                                    <input type="number" name="{{item.product.id}}" min="1"
+                                    <input type="number" name="{{item.product.prod}}" min="1"
                                            [ngModel]="item.count"
                                            (ngModelChange)="update($event, item)">
                                 </td>

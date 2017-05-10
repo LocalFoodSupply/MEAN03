@@ -1,7 +1,7 @@
 /*
  * Angular Imports
  */
-import {Component} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 
 /*
  * Components
@@ -12,7 +12,7 @@ import {Category, CategoryService} from '../category/category.service';
   selector: 'db-welcome',
   templateUrl: './app/welcome/welcome.component.html'
 })
-export class WelcomeComponent {
+export class WelcomeComponent{
   // Slide Categories
   slideCategories: Category[];
 
@@ -20,16 +20,21 @@ export class WelcomeComponent {
   cardCategories: Category[];
 
   constructor(private categoryServics:CategoryService) {
+    this.categoryServics.getCategories();
+    this.cardCategories =this.categoryServics.categories;
     this.slideCategories = [
-      this.categoryServics.getCategory('1'),
-      this.categoryServics.getCategory('2'),
-      this.categoryServics.getCategory('3')
+      this.categoryServics.categories[0],
+      this.categoryServics.categories[1],
+      this.categoryServics.categories[2]
     ];
-    this.cardCategories = this.categoryServics.getCategories();
+
+
   }
 
   selectCategory(category: Category) {
     console.log('Selected category', category.title);
   }
+
+
 }
 

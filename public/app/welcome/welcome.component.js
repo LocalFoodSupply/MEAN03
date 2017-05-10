@@ -24,12 +24,13 @@ System.register(["@angular/core", "../category/category.service"], function (exp
             WelcomeComponent = (function () {
                 function WelcomeComponent(categoryServics) {
                     this.categoryServics = categoryServics;
+                    this.categoryServics.getCategories();
+                    this.cardCategories = this.categoryServics.categories;
                     this.slideCategories = [
-                        this.categoryServics.getCategory('1'),
-                        this.categoryServics.getCategory('2'),
-                        this.categoryServics.getCategory('3')
+                        this.categoryServics.categories[0],
+                        this.categoryServics.categories[1],
+                        this.categoryServics.categories[2]
                     ];
-                    this.cardCategories = this.categoryServics.getCategories();
                 }
                 WelcomeComponent.prototype.selectCategory = function (category) {
                     console.log('Selected category', category.title);

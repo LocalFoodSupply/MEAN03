@@ -18,7 +18,8 @@ export class CategoryListComponent {
     categories: Category[];
 
     constructor(private router: Router, private categoryService: CategoryService) {
-        this.categories = this.categoryService.getCategories();
+        this.categoryService.getCategories();
+        this.categories =this.categoryService.categories ;
     }
 
     filterProducts(category: Category) {

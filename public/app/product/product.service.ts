@@ -38,7 +38,7 @@ export class ProductService {
 
 
 export interface Product {
-    category: string;
+    category:any;
     // The title
     title: string;
     // Price

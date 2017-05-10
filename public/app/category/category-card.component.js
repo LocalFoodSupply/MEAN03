@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/router", "./category.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/router"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/router", "./category.service"], func
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, category_service_1, CategoryCardComponent;
+    var core_1, router_1, CategoryCardComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -18,9 +18,6 @@ System.register(["@angular/core", "@angular/router", "./category.service"], func
             },
             function (router_1_1) {
                 router_1 = router_1_1;
-            },
-            function (category_service_1_1) {
-                category_service_1 = category_service_1_1;
             }
         ],
         execute: function () {
@@ -35,7 +32,7 @@ System.register(["@angular/core", "@angular/router", "./category.service"], func
             }());
             __decorate([
                 core_1.Input(),
-                __metadata("design:type", category_service_1.Category)
+                __metadata("design:type", Object)
             ], CategoryCardComponent.prototype, "category", void 0);
             CategoryCardComponent = __decorate([
                 core_1.Component({

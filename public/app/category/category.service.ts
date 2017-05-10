@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
+import { Http } from '@angular/http';
 
-
-export class Category {
+export interface Category {
     //  Unique Id
     id: string;
     // The title
@@ -15,34 +15,24 @@ export class Category {
 }
 
 
-
 @Injectable()
 export class CategoryService {
-    categories: Category[] = [
-        { id: '1', title: 'Bread & Bakery', imageL: "/img/5.jpg", imageS: "/img/5.jpg", desc: 'The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more.' },
-        { id: '2', title: 'Takeaway', imageL: "/img/6.jpg", imageS: "/img/6.jpg", desc: 'It\'s consistently excellent, dishes are superb and healthily cooked with high quality ingredients.' },
-        { id: '3', title: 'Dairy', imageL: "/img/7.jpg", imageS: "/img/7.jpg", desc: 'A dairy product is food produced from the milk of mammals, primarily cows, water buffaloes, goats, sheep, yaks.' },
-        { id: '4', title: 'Meat', imageL: "/img/8.jpg", imageS: "/img/8.jpg", desc: 'Only superior quality beef, lamb, pork.' },
-        { id: '5', title: 'Seafood', imageL: "/img/9.jpg", imageS: "/img/9.jpg", desc: 'Great place to buy fresh seafood.' },
-        { id: '6', title: 'Fruit & Veg', imageL: "/img/10.jpg", imageS: "/img/10.jpg", desc: 'A variety of fresh fruits and vegetables.' }
-    ];
+    categories:Category[];
+    constructor(private _http:Http) { };
     getCategories() {
-        return this.categories;
-    }
+    let urls = 'http://localhost:3000/api/category/list'
+    return this._http.get(urls)
+        .map(res => res.json().categories).subscribe((categories:Category[])=>this.categories=categories);}
+
     getCategory(id: string): Category {
-        for (let i = 0; i < this.categories.length; i++) {
-            if (this.categories[i].id === id) {
-                return this.categories[i];
+            for (let i = 0; i < this.categories.length; i++) {
+                if (this.categories[i].id === id) {
+                    return this.categories[i];
+                }
             }
+            return null;
         }
-        throw new CategoryNotFoundException(`Category ${id} not found`);
+
     }
 
-}
 
-
-export class CategoryNotFoundException extends Error {
-    constructor(message?: string) {
-        super(message);
-    }
-}

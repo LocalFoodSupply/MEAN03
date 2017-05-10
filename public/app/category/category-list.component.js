@@ -28,7 +28,8 @@ System.register(["@angular/core", "@angular/router", "./category.service"], func
                 function CategoryListComponent(router, categoryService) {
                     this.router = router;
                     this.categoryService = categoryService;
-                    this.categories = this.categoryService.getCategories();
+                    this.categoryService.getCategories();
+                    this.categories = this.categoryService.categories;
                 }
                 CategoryListComponent.prototype.filterProducts = function (category) {
                     this.router.navigate(['/products'], { queryParams: { category: category.id } });
