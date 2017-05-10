@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import { Http } from '@angular/http';
+import {Observable} from "rxjs/Observable";
 
 export interface Category {
     //  Unique Id
@@ -19,10 +20,10 @@ export interface Category {
 export class CategoryService {
     categories:Category[];
     constructor(private _http:Http) { };
-    getCategories() {
+    getCategories(): Observable<Category[]> {
     let urls = 'http://localhost:3000/api/category/list'
     return this._http.get(urls)
-        .map(res => res.json().categories).subscribe((categories:Category[])=>this.categories=categories);}
+        .map(res => res.json().categories)}
 
     getCategory(id: string): Category {
             for (let i = 0; i < this.categories.length; i++) {

@@ -27,10 +27,9 @@ System.register(["@angular/core", "@angular/http"], function (exports_1, context
                 }
                 ;
                 CategoryService.prototype.getCategories = function () {
-                    var _this = this;
                     var urls = 'http://localhost:3000/api/category/list';
                     return this._http.get(urls)
-                        .map(function (res) { return res.json().categories; }).subscribe(function (categories) { return _this.categories = categories; });
+                        .map(function (res) { return res.json().categories; });
                 };
                 CategoryService.prototype.getCategory = function (id) {
                     for (var i = 0; i < this.categories.length; i++) {

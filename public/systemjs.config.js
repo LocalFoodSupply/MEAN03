@@ -20,6 +20,7 @@
         'router',
         'platform-browser',
         'platform-browser-dynamic',
+        'animations',
     ];
 
     ngPackageNames.forEach(function(pkgName) {

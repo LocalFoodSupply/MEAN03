@@ -24,14 +24,20 @@ System.register(["@angular/core", "../category/category.service"], function (exp
             WelcomeComponent = (function () {
                 function WelcomeComponent(categoryServics) {
                     this.categoryServics = categoryServics;
-                    this.categoryServics.getCategories();
-                    this.cardCategories = this.categoryServics.categories;
-                    this.slideCategories = [
-                        this.categoryServics.categories[0],
-                        this.categoryServics.categories[1],
-                        this.categoryServics.categories[2]
-                    ];
+                    // Slide Categories
+                    this.slideCategories = [];
                 }
+                WelcomeComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.cardCategories = this.categoryServics.getCategories();
+                    this.cardCategories.subscribe(function (categories) {
+                        _this.slideCategories = [
+                            categories[0],
+                            categories[1],
+                            categories[2]
+                        ];
+                    });
+                };
                 WelcomeComponent.prototype.selectCategory = function (category) {
                     console.log('Selected category', category.title);
                 };

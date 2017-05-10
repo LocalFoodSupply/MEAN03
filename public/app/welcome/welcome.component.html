@@ -38,7 +38,7 @@
 
   <!-- /.row -->
   <div class="row">
-    <db-category-card class="col-md-4 col-sm-6" *ngFor="let category of cardCategories"
+    <db-category-card class="col-md-4 col-sm-6" *ngFor="let category of cardCategories |async"
       [category]="category" (select)="selectCategory($event)">
     </db-category-card>
   </div>
