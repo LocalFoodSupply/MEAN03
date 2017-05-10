@@ -29,24 +29,23 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
         execute: function () {
             ProductGridComponent = (function () {
                 function ProductGridComponent(router, productService, cartService) {
-                    var _this = this;
                     this.router = router;
                     this.productService = productService;
                     this.cartService = cartService;
-                    this.products = [];
+                }
+                ProductGridComponent.prototype.ngOnInit = function () {
+                    var _this = this;
                     this.router
                         .queryParams
+                        .debounceTime(300) // wait for 300 ms pause in events
+                        .distinctUntilChanged() // only changed values pass
                         .subscribe(function (params) {
                         var category = params['category'];
                         var search = params['search'];
                         // Return filtered data from getProducts function
-                        _this.productService.getProducts(category);
-                        // Transform products to appropriate data
-                        // to display
-                        var products = _this.productService.products;
-                        _this.products = _this.transform(products);
+                        _this.products = _this.productService.getProducts(category).map(_this.transform);
                     });
-                }
+                };
                 ProductGridComponent.prototype.transform = function (source) {
                     var index = 0;
                     var length = source.length;
@@ -79,7 +78,9 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
                     selector: 'db-product-grid',
                     templateUrl: './app/product/product-grid.component.html'
                 }),
-                __metadata("design:paramtypes", [router_1.ActivatedRoute, product_service_1.ProductService, cart_service_1.CartService])
+                __metadata("design:paramtypes", [router_1.ActivatedRoute,
+                    product_service_1.ProductService,
+                    cart_service_1.CartService])
             ], ProductGridComponent);
             exports_1("ProductGridComponent", ProductGridComponent);
         }

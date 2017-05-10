@@ -24,6 +24,7 @@ export class WelcomeComponent implements OnInit {
 
 
   }
+  // 在模板中的cardCategories后面加|async
   ngOnInit(): void{
     this.cardCategories = this.categoryServics.getCategories();
     this.cardCategories.subscribe((categories: Category[]) => {

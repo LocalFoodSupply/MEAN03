@@ -19,7 +19,7 @@ export class CategoryCardComponent {
     constructor(private router: Router) {}
 
     filterProducts(category: Category) {
-        this.router.navigate(['/products'], { queryParams: { category: category.id} });
+        this.router.navigate(['/products'], { queryParams: { category: category} });
     }
 }
 

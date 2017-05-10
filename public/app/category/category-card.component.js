@@ -26,7 +26,7 @@ System.register(["@angular/core", "@angular/router"], function (exports_1, conte
                     this.router = router;
                 }
                 CategoryCardComponent.prototype.filterProducts = function (category) {
-                    this.router.navigate(['/products'], { queryParams: { category: category.id } });
+                    this.router.navigate(['/products'], { queryParams: { category: category } });
                 };
                 return CategoryCardComponent;
             }());

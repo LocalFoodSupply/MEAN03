@@ -29,21 +29,9 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
         execute: function () {
             ProductViewComponent = (function () {
                 function ProductViewComponent(route, productService, cartService) {
-                    var _this = this;
                     this.route = route;
                     this.productService = productService;
                     this.cartService = cartService;
-                    this.route
-                        .params
-                        .subscribe(function (params) {
-                        // Get the product id
-                        var id = params['id'];
-                        // Return the product from ProductService
-                        _this.productService.getProduct(id);
-                        _this.product = _this.productService.product;
-                        // Return the cart item
-                        _this.cartItem = _this.cartService.findItem(id);
-                    });
                 }
                 Object.defineProperty(ProductViewComponent.prototype, "quantity", {
                     get: function () {
@@ -59,6 +47,19 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
                     enumerable: true,
                     configurable: true
                 });
+                ProductViewComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.route
+                        .params
+                        .subscribe(function (params) {
+                        // Get the product id
+                        var id = params['id'];
+                        // Return the product from ProductService
+                        _this.productService.getProduct(id).subscribe(function (product) { return _this.product = product; });
+                        // Return the cart item
+                        _this.cartItem = _this.cartService.findItem(id);
+                    });
+                };
                 ProductViewComponent.prototype.addToCart = function () {
                     this.cartItem = this.cartService.addProduct(this.product);
                 };

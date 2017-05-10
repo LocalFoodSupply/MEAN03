@@ -27,6 +27,7 @@ System.register(["@angular/core", "../category/category.service"], function (exp
                     // Slide Categories
                     this.slideCategories = [];
                 }
+                // 在模板中的cardCategories后面加|async
                 WelcomeComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this.cardCategories = this.categoryServics.getCategories();

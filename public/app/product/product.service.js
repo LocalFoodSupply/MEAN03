@@ -26,7 +26,6 @@ System.register(["@angular/http", "@angular/core"], function (exports_1, context
                     this._http = _http;
                 }
                 ProductService.prototype.getProducts = function (filter) {
-                    var _this = this;
                     var url = 'http://localhost:3000/api/products';
                     //如果有filter，就把url換掉
                     if (filter) {
@@ -34,16 +33,12 @@ System.register(["@angular/http", "@angular/core"], function (exports_1, context
                     }
                     // products是obs，所以template那邊要用async
                     return this._http.get(url)
-                        .map(function (res) { return res.json().products; }).subscribe(function (products) { return _this.products = products; });
+                        .map(function (res) { return res.json().products; });
                 };
                 ProductService.prototype.getProduct = function (id) {
-                    var _this = this;
                     var urll = 'http://localhost:3000/api/product';
-                    this._http.get(urll + "/" + id)
-                        .map(function (res) { return res.json().product; })
-                        .subscribe(function (product) {
-                        _this.product = product;
-                    });
+                    return this._http.get(urll + "/" + id)
+                        .map(function (res) { return res.json().product; });
                 };
                 return ProductService;
             }());

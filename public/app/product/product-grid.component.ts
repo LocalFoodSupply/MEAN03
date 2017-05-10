@@ -1,9 +1,9 @@
 /*
  * Angular Imports
  */
-import {Component} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-
+import {Observable} from "rxjs/Observable";
 /*
  * Components
  */
@@ -14,21 +14,22 @@ import {CartService} from '../cart/cart.service';
     selector: 'db-product-grid',
     templateUrl: './app/product/product-grid.component.html'
 })
-export class ProductGridComponent {
-    products: any = [];
+export class ProductGridComponent  implements  OnInit{
+    products: Observable<Product[]>;
 
-    constructor(private router: ActivatedRoute, private productService: ProductService, private cartService: CartService) {
+    constructor(private router: ActivatedRoute,
+                private productService: ProductService,
+                private cartService: CartService) {}
+    ngOnInit(): void {
         this.router
             .queryParams
+            .debounceTime(300)// wait for 300 ms pause in events
+            .distinctUntilChanged() // only changed values pass
             .subscribe(params => {
                 let category: string = params['category'];
                 let search: string = params['search'];
                 // Return filtered data from getProducts function
-                this.productService.getProducts(category);
-                // Transform products to appropriate data
-                // to display
-                let products: Product[] = this.productService.products;
-                this.products = this.transform(products);
+                this.products = this.productService.getProducts(category).map(this.transform);
             });
     }
 

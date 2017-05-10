@@ -1,6 +1,6 @@
 import { Http,Response } from '@angular/http';
 import {Injectable} from "@angular/core";
-
+import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
@@ -10,7 +10,7 @@ export class ProductService {
 
     constructor(private _http:Http) { }
 
-    getProducts(filter?) {
+    getProducts(filter?):Observable<Product[]>{
     let url = 'http://localhost:3000/api/products';
     //如果有filter，就把url換掉
     if (filter) {
@@ -19,18 +19,15 @@ export class ProductService {
 
     // products是obs，所以template那邊要用async
     return this._http.get(url)
-      .map(res => res.json().products).subscribe(products=>this.products=products)
+      .map(res => res.json().products)
   }
 
 
-    getProduct(id) {
+    getProduct(id:string):Observable<Product>{
         let urll='http://localhost:3000/api/product';
-        this._http.get(`${urll}/${id}`)
-        .map((res) => res.json().product)
-       .subscribe(product => {
-        this.product = product;
-      });
-    }
+        return this._http.get(`${urll}/${id}`)
+        .map((res) => res.json().product);}
+
 
 
 
