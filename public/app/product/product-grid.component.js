@@ -43,7 +43,7 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
                         var category = params['category'];
                         var search = params['search'];
                         // Return filtered data from getProducts function
-                        _this.products = _this.productService.getProducts(category).map(_this.transform);
+                        _this.products = _this.productService.getProducts(category, search).map(_this.transform);
                     });
                 };
                 ProductGridComponent.prototype.transform = function (source) {

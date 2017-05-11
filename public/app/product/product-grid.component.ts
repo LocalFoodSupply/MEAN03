@@ -29,7 +29,7 @@ export class ProductGridComponent  implements  OnInit{
                 let category: string = params['category'];
                 let search: string = params['search'];
                 // Return filtered data from getProducts function
-                this.products = this.productService.getProducts(category).map(this.transform);
+                this.products = this.productService.getProducts(category,search).map(this.transform);
             });
     }
 

@@ -15,6 +15,9 @@ var schema = Schema({
     desc:String,
     prod:String,
 
+}).index({
+    'title': 'text',
+    'desc': 'text'
 });
 
 //#2 create model

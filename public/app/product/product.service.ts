@@ -10,12 +10,13 @@ export class ProductService {
 
     constructor(private _http:Http) { }
 
-    getProducts(filter?):Observable<Product[]>{
+    getProducts(category?,search?):Observable<Product[]>{
     let url = 'http://localhost:3000/api/products';
     //如果有filter，就把url換掉
-    if (filter) {
-      url = 'http://localhost:3000/api/products/'+filter;
+    if (category) {
+      url = 'http://localhost:3000/api/products/category/'+category;
     }
+    else if (search) { url = 'http://localhost:3000/api/products/search/'+search;}
 
     // products是obs，所以template那邊要用async
     return this._http.get(url)

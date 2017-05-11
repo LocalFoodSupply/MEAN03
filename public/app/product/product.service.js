@@ -25,11 +25,14 @@ System.register(["@angular/http", "@angular/core"], function (exports_1, context
                 function ProductService(_http) {
                     this._http = _http;
                 }
-                ProductService.prototype.getProducts = function (filter) {
+                ProductService.prototype.getProducts = function (category, search) {
                     var url = 'http://localhost:3000/api/products';
                     //如果有filter，就把url換掉
-                    if (filter) {
-                        url = 'http://localhost:3000/api/products/' + filter;
+                    if (category) {
+                        url = 'http://localhost:3000/api/products/category/' + category;
+                    }
+                    else if (search) {
+                        url = 'http://localhost:3000/api/products/search/' + search;
                     }
                     // products是obs，所以template那邊要用async
                     return this._http.get(url)
