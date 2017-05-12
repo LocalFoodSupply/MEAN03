@@ -19,6 +19,8 @@ import {FooterComponent} from './footer/footer.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
+import {productaddcomponent} from  "./product/product-add.component"
+
 /*
  * Routing
  */
@@ -31,7 +33,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
   imports: [BrowserModule, FormsModule, ReactiveFormsModule,AuthenticationModule,HttpModule,
             RouterModule.forRoot(AppRoutes), CartModule, CategoryModule, ProductModule],
   declarations: [AppComponent, NavbarComponent, FooterComponent,CheckoutViewComponent,
-                WelcomeComponent],
+                WelcomeComponent,productaddcomponent],
     providers: [AuthenticationService,{provide: LocationStrategy, useClass: HashLocationStrategy }
     ],
   bootstrap: [AppComponent]

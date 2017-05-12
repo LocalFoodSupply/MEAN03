@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        <%=title %>
+    </title>
+</head>
+<body>
+<% for(var i in messages) { %>
+<div class="flash"><%= messages[i] %></div>
+<% } %>
+<form action="/api/category/add" method="post">
+    <div>
+        <label>目录名称</label>
+        <input type="text" name="title" />
+    </div>
+    <div>
+        <label>描述</label>
+        <input type="text" name="desc" />
+    </div>
+    <div>
+        <label>小图</label>
+        <input type="text" name="imageS" />
+    </div>
+    <div>
+        <label>大图</label>
+        <input type="text" name="imageL" />
+    </div>
+    <div>
+        <label>id</label>
+        <input type="text" name="id" />
+    </div>
+    <div>
+        <input type="submit" value="add to category" />
+    </div>
+</form>
+</body>
+</html>

@@ -2,7 +2,7 @@ module.exports = function (app, passport) {
 
     //model
     var Category = require('../models/catergory.server.model');
-
+    var categorycontroller=require('../controllers/category.server.controller')
     //取得user model
 
 
@@ -14,7 +14,7 @@ module.exports = function (app, passport) {
                 category: category
             });
         });
-    });
+    }).get('/api/category/add',categorycontroller.rendercategory);
 
     // 取得所有產品分類
     app.get('/api/category/list', function (req, res) {

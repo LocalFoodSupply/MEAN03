@@ -1,7 +1,7 @@
-System.register(["./welcome/welcome.component", "./product/product-list.component", "./product/product-view.component", "./cart/cart-view.component", "./checkout/checkout-view.component", "./authentication/signin/signin.component", "./authentication/signup/signup.component"], function (exports_1, context_1) {
+System.register(["./welcome/welcome.component", "./product/product-list.component", "./product/product-view.component", "./cart/cart-view.component", "./checkout/checkout-view.component", "./authentication/signin/signin.component", "./authentication/signup/signup.component", "./product/product-add.component"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var welcome_component_1, product_list_component_1, product_view_component_1, cart_view_component_1, checkout_view_component_1, signin_component_1, signup_component_1, AppRoutes;
+    var welcome_component_1, product_list_component_1, product_view_component_1, cart_view_component_1, checkout_view_component_1, signin_component_1, signup_component_1, product_add_component_1, AppRoutes;
     return {
         setters: [
             function (welcome_component_1_1) {
@@ -24,6 +24,9 @@ System.register(["./welcome/welcome.component", "./product/product-list.componen
             },
             function (signup_component_1_1) {
                 signup_component_1 = signup_component_1_1;
+            },
+            function (product_add_component_1_1) {
+                product_add_component_1 = product_add_component_1_1;
             }
         ],
         execute: function () {
@@ -36,6 +39,7 @@ System.register(["./welcome/welcome.component", "./product/product-list.componen
                 { path: 'checkout', component: checkout_view_component_1.CheckoutViewComponent },
                 { path: 'signin', component: signin_component_1.SigninComponent },
                 { path: 'signup', component: signup_component_1.SignupComponent },
+                { path: 'productadd', component: product_add_component_1.productaddcomponent },
             ]);
             //只需要导入一个组件 
         }

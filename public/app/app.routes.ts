@@ -6,6 +6,7 @@ import {CartViewComponent} from './cart/cart-view.component';
 import {CheckoutViewComponent} from './checkout/checkout-view.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+import {productaddcomponent} from  "./product/product-add.component"
 
 export const AppRoutes: Routes = [
     { path: "", redirectTo: "welcome", pathMatch: "full" },
@@ -16,5 +17,6 @@ export const AppRoutes: Routes = [
     { path: 'checkout', component: CheckoutViewComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
+    {path: 'productadd', component: productaddcomponent },
     ]
 //只需要导入一个组件

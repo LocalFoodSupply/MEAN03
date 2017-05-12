@@ -1,9 +1,9 @@
+
 module.exports = function (app, passport) {
 
     //model
 
     var Product = require('../models/product.server.model');
-    
 
 
 
@@ -17,18 +17,17 @@ module.exports = function (app, passport) {
 
 
     //用category id取得對應products
-    app.get('/api/products/category/:id', function (req, res, next) {
-        Product
-            .find({'category':req.params.id}).populate('category')
-            // 將category path替換成對應的資料
-            .exec(function (err, products) {
-                if (err) return next(err);
-                // 取到資料就回傳json
-                res.json({
-                    products: products
-                });
+    app.get('/api/products/category/:id', function(req,res,next){Product
+        .find({'category':req.params.id}).populate('category')
+        // 將category path替換成對應的資料
+        .exec(function (err, products) {
+            if (err) return next(err);
+            // 取到資料就回傳json
+            res.json({
+                products: products
             });
-    });
+        })});
+
     app.get('/api/products/search/:id', function (req, res, next) {
         Product
             .find({ $text: { $search: req.params.id}},{ score : { $meta: "textScore" }
