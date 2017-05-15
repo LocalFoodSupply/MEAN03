@@ -1,0 +1,19 @@
+<div class="container">
+<div *ngFor="let message of messages" [ngSwitch]="message.type" >
+    <strong *ngSwitchCase="'status'">
+		<span>{{message.created}}</span>
+		<span>{{message.username}}</span>
+		<span>is</span>
+		<span>{{message.text}}</span>
+    </strong>
+    <span *ngSwitchDefault>
+	    <strong>{{message.created}}</strong>
+	    <span>{{message.username}}:</span>
+	    <span>{{message.text}}</span>
+    </span>
+</div>
+<form (ngSubmit)="sendMessage()">
+    <input type="text" name= "messageText" [(ngModel)]="messageText">
+    <input type="submit">
+</form>
+</div>

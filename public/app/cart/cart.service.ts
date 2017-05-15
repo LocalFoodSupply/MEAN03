@@ -64,6 +64,7 @@ export class CartService {
         if (item) {
             // Decrease the count
             item.count--;
+            item.amount -= product.price;
             // Check was that the last product.server.controller.js?
             if (!item.count) {
                 // It was last product.server.controller.js

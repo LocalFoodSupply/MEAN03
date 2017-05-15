@@ -39,8 +39,9 @@ System.register(["@angular/core", "@angular/router", "@angular/http", "../catego
                     var body = JSON.stringify(product);
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
-                    return this.http.post('http://localhost:3000/api/product/add', body, options)
-                        .map(function (res) { return _this.product = res.json(); });
+                    this.http.post('http://localhost:3000/api/product', body, options)
+                        .map(function (res) { return _this.product = res.json(); })
+                        .subscribe(function (result) { return _this._router.navigate(['/']); }, function (error) { return _this.errorMessage = error; });
                 };
                 productaddcomponent.prototype.ngOnInit = function () {
                     this.categories = this.categoryService.getCategories();

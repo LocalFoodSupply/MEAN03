@@ -16,7 +16,7 @@ import {Cart, CartItem, CartService} from '../cart/cart.service';
 })
 export class ProductViewComponent  implements  OnInit{
 
-    product: Product;
+    product:Product;
     cartItem: CartItem;
 
     get quantity(): number {
@@ -37,9 +37,12 @@ export class ProductViewComponent  implements  OnInit{
                 // Get the product id
                 let id: string = params['id'];
                 // Return the product from ProductService
-                this.productService.getProduct(id).subscribe((product: Product) => this.product = product);
+                this.productService.getProduct(id).subscribe(
+                    (product:Product) =>
+                    {this.product = product;
+                    this.cartItem =this.cartService.findItem(product.prod);
+                    });
                     // Return the cart item
-                this.cartItem = this.cartService.findItem(id);
             });
     }
 

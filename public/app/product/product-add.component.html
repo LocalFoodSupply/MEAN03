@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form (ngSubmit)="productadd()">
+            <form (ngSubmit)="productadd(product)">
                 <div>
                     <label>title</label>
                     <input type="text" [(ngModel)]="product.title" name="title">
@@ -27,15 +27,15 @@
                     <input type="text" [(ngModel)]="product.imageS" name="imageS">
                 </div>
                 <div>
-                    <label>desc</label>
+                    <label>price</label>
                     <input type="text" [(ngModel)]="product.price" name="price">
                 </div>
                 <div>
-                    <label>desc</label>
+                    <label>isSpecial</label>
                     <input type="text" [(ngModel)]="product.isSpecial" name="isSpecial">
                 </div>
                 <div>
-                    <label>desc</label>
+                    <label>id</label>
                     <input type="text" [(ngModel)]="product.prod" name="prod">
                 </div>
                 <div>

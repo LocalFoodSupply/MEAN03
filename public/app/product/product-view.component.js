@@ -55,9 +55,11 @@ System.register(["@angular/core", "@angular/router", "./product.service", "../ca
                         // Get the product id
                         var id = params['id'];
                         // Return the product from ProductService
-                        _this.productService.getProduct(id).subscribe(function (product) { return _this.product = product; });
+                        _this.productService.getProduct(id).subscribe(function (product) {
+                            _this.product = product;
+                            _this.cartItem = _this.cartService.findItem(product.prod);
+                        });
                         // Return the cart item
-                        _this.cartItem = _this.cartService.findItem(id);
                     });
                 };
                 ProductViewComponent.prototype.addToCart = function () {

@@ -18,13 +18,15 @@ export class productaddcomponent implements  OnInit{
                  private _router: Router,private categoryService: CategoryService) {}
 
 
-    productadd(product: any): Observable<any> {
+    productadd(product: any) {
         let body = JSON.stringify(product);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post('http://localhost:3000/api/product/add', body, options)
+        this.http.post('http://localhost:3000/api/product', body, options)
             .map(res => this.product = res.json())
+            .subscribe(result  => this._router.navigate(['/']),
+            error =>  this.errorMessage = error);
     }
     ngOnInit(): void {
         this.categories = this.categoryService.getCategories();

@@ -71,7 +71,7 @@ module.exports = function (app, passport) {
     // 用product_id找product
     app.get('/api/product/:id', function (req, res) {
         Product.findOne({
-            prod: req.params.id
+            _id: req.params.id
         }, function (err, product) {
             if (err) return next(err);
             //回傳json

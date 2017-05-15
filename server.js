@@ -11,7 +11,7 @@ const configurePassport = require('./config/passport');
 const db = configureMongoose();
 
 // Create a new Express application instance
-const app = configureExpress();
+const app = configureExpress(db);
 
 const passport = configurePassport();
 

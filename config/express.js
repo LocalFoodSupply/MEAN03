@@ -1,23 +1,28 @@
 // Load the module dependencies
 const config = require('./config');
 const path = require('path');
+const http = require('http');
+const socketio = require('socket.io');
 const express = require('express');
 const morgan = require('morgan');
 const compress = require('compression');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
+const configureSocket = require('./socketio');
 const flash = require('connect-flash');
 
 
 // 模块的引入主要在express，再使用 app.use(flash())注册
 
 // Define the Express configuration method
-module.exports = function() {
+module.exports = function(db) {
 	// Create a new Express application instance
 	const app = express();
-
+	const server = http.createServer(app);
+    const io = socketio.listen(server);
 	// Use the 'NDOE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
 	if (process.env.NODE_ENV === 'development') {
 		app.use(morgan('dev'));
@@ -31,13 +36,16 @@ module.exports = function() {
 	}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
-
+    const mongoStore = new MongoStore({
+    mongooseConnection: db.connection
+  });
 
 	// Configure the 'session' middleware
 	app.use(session({
 		saveUninitialized: true,
 		resave: true,
-		secret: config.sessionSecret
+		secret: config.sessionSecret,
+		store: mongoStore
 	}));
 
 	// Set the application view engine and 'views' folder
@@ -55,7 +63,10 @@ module.exports = function() {
 	//先解决依赖 在搞路由 顺序相反导致js文件不能正确加载
     require('../app/routes/index.server.routes.js')(app);
      require('../app/routes/users.server.routes.js')(app);
+    require("../app/routes/category.server.routes")(app);
      require("../app/routes/product.server.routes")(app);
+
+	configureSocket(server, io, mongoStore);
 	// Return the Express application instance
-	return app;
+	return server;
 };

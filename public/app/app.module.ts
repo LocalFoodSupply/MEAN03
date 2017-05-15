@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CartModule} from './cart/cart.module';
 import {CategoryModule} from './category/category.module';
 import {ProductModule} from './product/product.module';
+import { ChatModule } from './chat/chat.module';
 import {LocationStrategy, HashLocationStrategy , PathLocationStrategy} from '@angular/common';
 /*
  * Components
@@ -31,7 +32,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule,AuthenticationModule,HttpModule,
-            RouterModule.forRoot(AppRoutes), CartModule, CategoryModule, ProductModule],
+            RouterModule.forRoot(AppRoutes), CartModule, CategoryModule, ProductModule,ChatModule,],
   declarations: [AppComponent, NavbarComponent, FooterComponent,CheckoutViewComponent,
                 WelcomeComponent,productaddcomponent],
     providers: [AuthenticationService,{provide: LocationStrategy, useClass: HashLocationStrategy }

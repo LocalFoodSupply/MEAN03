@@ -73,6 +73,7 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                     if (item) {
                         // Decrease the count
                         item.count--;
+                        item.amount -= product.price;
                         // Check was that the last product.server.controller.js?
                         if (!item.count) {
                             // It was last product.server.controller.js
