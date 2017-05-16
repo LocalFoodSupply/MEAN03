@@ -1,3 +1,18 @@
+
+<div class="threads-container col sidebar">
+    <user-list></user-list>
+    <thread-list></thread-list>
+</div>
+
+<div class="messages-container col content">
+    <router-outlet></router-outlet>
+
+    <div class="message-form-container">
+        <message-form></message-form>
+    </div>
+</div>
+
+<!--
 <div class="container">
 <div *ngFor="let message of messages" [ngSwitch]="message.type" >
     <strong *ngSwitchCase="'status'">
@@ -16,4 +31,4 @@
     <input type="text" name= "messageText" [(ngModel)]="messageText">
     <input type="submit">
 </form>
-</div>
+</div>  -->

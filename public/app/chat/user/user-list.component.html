@@ -1,0 +1,24 @@
+<div class="user-search-container">
+    <input
+            type="text"
+            class="form-control block"
+            placeholder="start a conversation"
+            [(ngModel)]="searchValue"
+            (focus)="onFocus($event)"
+            (input)="onInput($event)"
+            (keydown.esc)="onEsc($event)"
+    />
+</div>
+<div class="user-list-container">
+    <div class="users-container" [ngClass]="{active: selected }">
+        <div class="user-list-toobar">
+            <a href="#" (click)="onClose($event)" class="close-button">
+                <span>×</span>
+                <span class="close-text">esc</span>
+            </a>
+        </div>
+        <div *ngFor="let user of filteredUsers">
+            <a href="javascript:void(0);" (click)="openThread($event, user)">{{user.username}}</a>
+        </div>
+    </div>
+</div>

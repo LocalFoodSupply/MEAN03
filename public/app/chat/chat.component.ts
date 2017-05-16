@@ -7,7 +7,11 @@ import {ChatService} from './chat.service';
   providers: [ChatService]
 })
 export class ChatComponent {
-	messageText: string;
+
+  constructor(private _chatService: ChatService) {
+  }
+
+/*	messageText: string;
 	messages: Array<any>;
 
 	constructor(private _chatService: ChatService) {}
@@ -31,5 +35,5 @@ export class ChatComponent {
 
 	ngOnDestroy() {
 		this._chatService.removeListener('chatMessage');
-	}
+	}*/
 }

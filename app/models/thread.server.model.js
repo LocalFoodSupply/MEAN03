@@ -1,7 +1,6 @@
 /**
  * Created by root on 17-5-16.
  */
-'use strict';
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

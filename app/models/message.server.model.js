@@ -1,7 +1,6 @@
 /**
  * Created by root on 17-5-16.
  */
-'use strict';
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -28,4 +27,4 @@ const MessageSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Message', MessageSchema);
+mongoose.model('Message', MessageSchema);

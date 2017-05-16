@@ -36,6 +36,8 @@ module.exports = function(db) {
 	}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
+	app.disable('x-powered-by');
+
     const mongoStore = new MongoStore({
     mongooseConnection: db.connection
   });
@@ -47,7 +49,11 @@ module.exports = function(db) {
 		secret: config.sessionSecret,
 		store: mongoStore
 	}));
+    app.use(function(req, res, next) {
+        req.resources = req.resources || {};
 
+        next();
+    });
 	// Set the application view engine and 'views' folder
 	app.set('views', './app/views');
 	app.set('view engine', 'ejs');
@@ -65,7 +71,7 @@ module.exports = function(db) {
      require('../app/routes/users.server.routes.js')(app);
     require("../app/routes/category.server.routes")(app);
      require("../app/routes/product.server.routes")(app);
-
+    require("../app/routes/thread.server.route")(app);
 	configureSocket(server, io, mongoStore);
 	// Return the Express application instance
 	return server;

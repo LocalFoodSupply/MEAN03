@@ -2,10 +2,12 @@
 const config = require('./config');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const configureChat = require('../app/controllers/chat.server.controller');
 
 // Define the Socket.io configuration method
 module.exports = function(server, io, mongoStore) {
+    const configureChat = require('../app/controllers/chat.server.controller');
+    //必需在模块导出的内部 不然不可以使用模型
+    let  connectedClients = {};
 	// Intercept Socket.io's handshake request
     io.use((socket, next) => {
     	// Use the 'cookie-parser' module to parse the request cookies
@@ -17,7 +19,7 @@ module.exports = function(server, io, mongoStore) {
             mongoStore.get(sessionId, (err, session) => {
             	// Set the Socket.io session information
                 socket.request.session = session;
-
+                socket.user = {_id: socket.request.session.passport.user};
                 // Use Passport to populate the user details
                 passport.initialize()(socket.request, {}, () => {
                 	passport.session()(socket.request, {}, () => {
@@ -35,6 +37,9 @@ module.exports = function(server, io, mongoStore) {
 	// Add an event listener to the 'connection' event
     io.on('connection', (socket) => {
     	// Load the chat controller
-        configureChat(io, socket);
+        console.log(socket.request.session.passport.user,socket.id,
+            socket.request.session.user,socket.request.user);
+        connectedClients[socket.request.session.passport.user] = socket;
+        configureChat(socket, connectedClients,io);
     });
 };

@@ -3,7 +3,7 @@ const users = require('../../app/controllers/users.server.controller');
 const passport = require('passport');
 
 //在express.js中设置使用本文件作为路由
-module.exports = function(app) {  app.route('/users')
+module.exports = function(app) {  app.route('/api/users')
 .post(users.create)
 .get(users.list);
 
@@ -26,4 +26,17 @@ module.exports = function(app) {
        successRedirect: '/',
        failureRedirect: '/signin',
        failureFlash: true}));*/
-  app.get('/api/auth/signout', users.signout);};
+  app.get('/api/auth/signout', users.signout);
+    app.route('/api/users')
+        .post(users.create)
+        .get(users.list);
+
+    app.route('/users/:userId').get(users.read)
+        .put(users.update)
+        .delete(users.delete);
+    app.param('userId', users.userByID);
+
+
+    app.route('/users/name/:username').get(users.read);
+    app.param('username', users.userByUsername);
+};
