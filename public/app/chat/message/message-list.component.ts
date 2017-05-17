@@ -5,6 +5,7 @@ import { ThreadService } from '../services/thread.service';
 import { Thread } from '../datatypes/thread';
 import { Message } from '../datatypes/message';
 import { MessageComponent } from './message.component';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'message-list',
@@ -21,7 +22,7 @@ import { MessageComponent } from './message.component';
     `
 })
 export class MessageListComponent {
-  public messages: Array<Message> = [];
+  public messages: Array<Message>=[];
   private _messageService: MessageService;
   private _threadService: ThreadService;
   constructor(
@@ -31,7 +32,9 @@ export class MessageListComponent {
   ) {
     this._messageService = messageService;
     this._threadService = threadService;
+    //this.messages =this._messageService.messages;
     this._messageService.messages.subscribe(messages => this.messages = messages);
+    //this._messageService.on('receive:im', message =>this.messages.push(message) );
     this._route.params.subscribe(params => {
         let threadId: string;
         threadId = params['identifier'];

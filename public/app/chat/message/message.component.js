@@ -31,7 +31,7 @@ System.register(["@angular/core"], function (exports_1, context_1) {
                 core_1.Component({
                     inputs: ['message'],
                     selector: 'message',
-                    template: "\n      <div class=\"message-item\">\n        <div class=\"message-identifier\">\n          <img src=\"{{message.sender.avatar}}\" widht=\"36\" height=\"36\"/>\n        </div>\n        <div class=\"message-content\">\n          <div class=\"message-sender\">\n            <span class=\"user-name\">{{message.sender.name}}</span>\n            <span class=\"message-timestamp\" title={{message.fulltime}}>{{message.time}}</span>\n          </div>\n          <div class=\"message-body\">\n            {{message.body}}\n          </div>\n        </div>\n      </div>\n    "
+                    template: "\n      <div class=\"message-item\">\n        <div class=\"message-identifier\">\n          <img src=\"{{message.sender.avatar}}\" widht=\"36\" height=\"36\"/>\n        </div>\n        <div class=\"message-content\">\n          <div class=\"message-sender\">\n            <span class=\"user-name\">{{message.sender.username}}</span>\n            <span class=\"message-timestamp\" title={{message.fulltime}}>{{message.time}}</span>\n          </div>\n          <div class=\"message-body\">\n            {{message.body}}\n          </div>\n        </div>\n      </div>\n    "
                 }),
                 __metadata("design:paramtypes", [])
             ], MessageComponent);

@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router'
+import { Component,OnInit } from '@angular/core';
+import { Router,ActivatedRoute } from '@angular/router'
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { UserService } from '../services/user.service';
 import { ThreadService } from '../services/thread.service';
 import { User } from '../datatypes/user';
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'user-list',
     templateUrl:'./app/chat/user/user-list.component.html',
 })
-export class UserListComponent {
-  public users: Array<User>;
-  public filteredUsers: Array<User>;
+export class UserListComponent  {
+  public users: Observable<Array<User>>;
+  public filteredUsers: Observable<Array<User>>;
   public selected: boolean = false;
   public search: Subject<String> = new ReplaySubject(1);
   public searchValue: string = '';
@@ -20,21 +21,23 @@ export class UserListComponent {
   private _userService: UserService;
   private _router: Router;
 
-  constructor(userService: UserService, threadService: ThreadService, router: Router) {
+  constructor(userService: UserService, threadService: ThreadService, router: Router,
+              private _activatedroute:ActivatedRoute) {
     this._userService = userService;
     this._threadService = threadService;
     this._router = router;
-    this._userService.users.subscribe(users => {
+    /*this._userService.users.subscribe(users => {
       this.filteredUsers = this.users = users;
-    });
-    this.search
+    });*/
+    this.filteredUsers = this.users=this._userService.users;
+    /*this.search
       .debounceTime(200)
       .distinctUntilChanged()
       .subscribe((value: string) => {
         this.filteredUsers = this.users.filter(user => {
           return user.username.toLowerCase().startsWith(value);
         });
-      });
+      });*/
   }
 
   onInput(event) {

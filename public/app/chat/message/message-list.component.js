@@ -37,7 +37,9 @@ System.register(["@angular/core", "@angular/router", "../services/message.servic
                     this.messages = [];
                     this._messageService = messageService;
                     this._threadService = threadService;
+                    //this.messages =this._messageService.messages;
                     this._messageService.messages.subscribe(function (messages) { return _this.messages = messages; });
+                    //this._messageService.on('receive:im', message =>this.messages.push(message) );
                     this._route.params.subscribe(function (params) {
                         var threadId;
                         threadId = params['identifier'];

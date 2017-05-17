@@ -5,7 +5,8 @@ import { ThreadService } from './thread.service';
 import { contentHeaders } from '../common/headers';
 import { Message } from '../datatypes/message';
 import { User } from '../datatypes/user';
-
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../../authentication/authentication.service';
 type ObservableMessages = Observable<Array<Message>>;
 
 @Injectable()
@@ -18,13 +19,19 @@ export class MessageService {
   private _messagesObservers: any;
   private _dataStore: { messages: Array<Message> };
 
-  constructor(http: Http, threadService: ThreadService) {
+  constructor(http: Http, threadService: ThreadService,private _router:Router,
+				private _authenticationService: AuthenticationService) {
+
+    if (this._authenticationService.isLoggedIn()) {
     this._io = io();
     this._http = http;
     this._threadService = threadService;
     this.messages = new Observable(observer => this._messagesObservers = observer).share();
     this._dataStore = { messages: [] };
-    this._socketOn();
+    this._socketOn();     //这里打开了一个socket如果没有验证的话
+    } else {
+			this._router.navigate(['welcome']);
+		}
   }
 
   getByThread(threadId) {
@@ -36,7 +43,7 @@ export class MessageService {
         let sender = new User(
           data.sender._id,
           data.sender.email,
-          data.sender.name,
+          data.sender.username,
           data.sender.createdAt
         );
         return new Message(
@@ -57,6 +64,13 @@ export class MessageService {
   sendMessage(message: Message) {
     this._io.emit('send:im', message);
   }
+  on(eventName, callback) {
+		if (this._io) {
+			this._io.on(eventName, function(data) {
+				callback(data);
+			});
+		}
+    };
 
   private _socketOn() {
     this._io.on('receive:im', message => this._storeMessage(message));

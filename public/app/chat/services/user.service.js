@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/http", "rxjs/Observable", "../common/headers"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/http", "../common/headers"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/http", "rxjs/Observable", "../common
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, http_1, Observable_1, headers_1, UserService;
+    var core_1, http_1, headers_1, UserService;
     return {
         setters: [
             function (core_1_1) {
@@ -19,9 +19,6 @@ System.register(["@angular/core", "@angular/http", "rxjs/Observable", "../common
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (Observable_1_1) {
-                Observable_1 = Observable_1_1;
-            },
             function (headers_1_1) {
                 headers_1 = headers_1_1;
             }
@@ -29,28 +26,14 @@ System.register(["@angular/core", "@angular/http", "rxjs/Observable", "../common
         execute: function () {
             UserService = (function () {
                 function UserService(http) {
-                    var _this = this;
                     this._http = http;
-                    this.users = new Observable_1.Observable(function (observer) { return _this._userObservers = observer; }).share();
-                    this._dataStore = { users: [] };
-                    this.getAll();
-                }
-                UserService.prototype.getAll = function () {
-                    var _this = this;
-                    return this._http
+                    this.users = this._http
                         .get('/api/users', { headers: headers_1.contentHeaders })
-                        .map(function (res) { return res.json(); })
-                        .subscribe(function (users) { return _this.storeUsers(users); });
-                };
-                // findById(id: number) {
-                //   return this._http
-                //   .get('/api/users/'+id, { headers: contentHeaders })
-                //   .map((res: Response) => res.json());
-                // }
-                UserService.prototype.storeUsers = function (users) {
-                    this._dataStore.users = users;
-                    this._userObservers.next(this._dataStore.users);
-                };
+                        .map(function (res) { return res.json(); });
+                    //new Observable(observer => this._userObservers = observer).share();
+                    this._dataStore = { users: [] };
+                    //this.getAll();
+                }
                 return UserService;
             }());
             UserService = __decorate([
@@ -58,6 +41,22 @@ System.register(["@angular/core", "@angular/http", "rxjs/Observable", "../common
                 __metadata("design:paramtypes", [http_1.Http])
             ], UserService);
             exports_1("UserService", UserService);
+            /*getAll() {
+              return this._http
+              .get('/api/users', { headers: contentHeaders })
+              .map((res: Response) => res.json())
+              .subscribe(users => this.storeUsers(users));
+            }*/
+            // findById(id: number) {
+            //   return this._http
+            //   .get('/api/users/'+id, { headers: contentHeaders })
+            //   .map((res: Response) => res.json());
+            // }
+            /* storeUsers(users: Array<User>) {
+               this._dataStore.users = users;
+               this._userObservers.next(this._dataStore.users);
+             }
+           }*/
         }
     };
 });

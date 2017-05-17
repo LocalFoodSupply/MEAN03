@@ -16,17 +16,20 @@ export class UserService {
 
   constructor(http: Http) {
     this._http = http;
-    this.users = new Observable(observer => this._userObservers = observer).share();
+    this.users =this._http
+          .get('/api/users', { headers: contentHeaders })
+          .map((res: Response) => res.json());
+        //new Observable(observer => this._userObservers = observer).share();
     this._dataStore = { users: [] };
-    this.getAll();
-  }
+    //this.getAll();
+  }}
 
-  getAll() {
+  /*getAll() {
     return this._http
     .get('/api/users', { headers: contentHeaders })
     .map((res: Response) => res.json())
     .subscribe(users => this.storeUsers(users));
-  }
+  }*/
 
   // findById(id: number) {
   //   return this._http
@@ -34,8 +37,8 @@ export class UserService {
   //   .map((res: Response) => res.json());
   // }
 
-  storeUsers(users: Array<User>) {
+ /* storeUsers(users: Array<User>) {
     this._dataStore.users = users;
     this._userObservers.next(this._dataStore.users);
   }
-}
+}*/

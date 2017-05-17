@@ -10,7 +10,7 @@ import { Component, AfterViewInit } from '@angular/core';
         </div>
         <div class="message-content">
           <div class="message-sender">
-            <span class="user-name">{{message.sender.name}}</span>
+            <span class="user-name">{{message.sender.username}}</span>
             <span class="message-timestamp" title={{message.fulltime}}>{{message.time}}</span>
           </div>
           <div class="message-body">

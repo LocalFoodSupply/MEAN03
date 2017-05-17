@@ -17,7 +17,7 @@
                 <span class="close-text">esc</span>
             </a>
         </div>
-        <div *ngFor="let user of filteredUsers">
+        <div *ngFor="let user of filteredUsers|async">
             <a href="javascript:void(0);" (click)="openThread($event, user)">{{user.username}}</a>
         </div>
     </div>

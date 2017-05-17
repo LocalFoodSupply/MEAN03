@@ -31,25 +31,26 @@ System.register(["@angular/core", "@angular/router", "rxjs/ReplaySubject", "../s
         ],
         execute: function () {
             UserListComponent = (function () {
-                function UserListComponent(userService, threadService, router) {
-                    var _this = this;
+                function UserListComponent(userService, threadService, router, _activatedroute) {
+                    this._activatedroute = _activatedroute;
                     this.selected = false;
                     this.search = new ReplaySubject_1.ReplaySubject(1);
                     this.searchValue = '';
                     this._userService = userService;
                     this._threadService = threadService;
                     this._router = router;
-                    this._userService.users.subscribe(function (users) {
-                        _this.filteredUsers = _this.users = users;
-                    });
-                    this.search
-                        .debounceTime(200)
-                        .distinctUntilChanged()
-                        .subscribe(function (value) {
-                        _this.filteredUsers = _this.users.filter(function (user) {
-                            return user.username.toLowerCase().startsWith(value);
+                    /*this._userService.users.subscribe(users => {
+                      this.filteredUsers = this.users = users;
+                    });*/
+                    this.filteredUsers = this.users = this._userService.users;
+                    /*this.search
+                      .debounceTime(200)
+                      .distinctUntilChanged()
+                      .subscribe((value: string) => {
+                        this.filteredUsers = this.users.filter(user => {
+                          return user.username.toLowerCase().startsWith(value);
                         });
-                    });
+                      });*/
                 }
                 UserListComponent.prototype.onInput = function (event) {
                     this.search.next(event.target.value);
@@ -87,7 +88,8 @@ System.register(["@angular/core", "@angular/router", "rxjs/ReplaySubject", "../s
                     selector: 'user-list',
                     templateUrl: './app/chat/user/user-list.component.html',
                 }),
-                __metadata("design:paramtypes", [user_service_1.UserService, thread_service_1.ThreadService, router_1.Router])
+                __metadata("design:paramtypes", [user_service_1.UserService, thread_service_1.ThreadService, router_1.Router,
+                    router_1.ActivatedRoute])
             ], UserListComponent);
             exports_1("UserListComponent", UserListComponent);
         }

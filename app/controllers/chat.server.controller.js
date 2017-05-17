@@ -6,10 +6,11 @@ const Thread = mongoose.model('Thread');
 const Message = mongoose.model('Message');
 
 
+
 module.exports = initInstantMessagingModule;
 
 class InstantMessagingModule {
-    constructor(socket, clients) {
+    constructor(socket, clients,io) {
     this.socket = socket;
     this.clients = clients;
     this.threads = {};
@@ -26,6 +27,7 @@ class InstantMessagingModule {
       }
 
       this.storeIM(data, (err, message, thread) => {
+        console.log("store something");
         if (err) {
           return this.handleError(err);
         }
@@ -82,19 +84,22 @@ class InstantMessagingModule {
       if (err) {
         return callback(err);
       }
-
       newMessage.populate('sender', callback);
     });
   }
     deliverIM(message, thread) {
     for (let i = 0; i < thread.participants.length; i++) {
-      if (thread.participants[i].toString() === message.sender.toString()) {
-        continue;
-      }
-
-      if (this.clients[thread.participants[i]]) {
+      if (thread.participants[i].toString() !== message.sender._id.toString()) {
+          console.log(thread.participants[i].toString());
+          console.log(message.sender.toString());
         this.clients[thread.participants[i]].emit('receive:im', message);
+        //continue;
       }
+     //前面已经使用pulate导致sender不是id，然后信息给传导你两遍，自身也变成了接受者
+     /* if (this.clients[thread.participants[i]]) {
+        console.log( message.sender);
+        this.clients[thread.participants[i]].emit('receive:im', message);
+      }*/
     }
   }
     handleError(err) {
