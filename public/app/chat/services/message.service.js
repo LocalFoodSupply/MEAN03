@@ -47,17 +47,16 @@ System.register(["@angular/core", "@angular/http", "rxjs/Observable", "./thread.
                     var _this = this;
                     this._router = _router;
                     this._authenticationService = _authenticationService;
-                    if (this._authenticationService.isLoggedIn()) {
-                        this._io = io();
-                        this._http = http;
-                        this._threadService = threadService;
-                        this.messages = new Observable_1.Observable(function (observer) { return _this._messagesObservers = observer; }).share();
-                        this._dataStore = { messages: [] };
-                        this._socketOn(); //这里打开了一个socket如果没有验证的话
-                    }
-                    else {
-                        this._router.navigate(['welcome']);
-                    }
+                    this._io = io();
+                    this._http = http;
+                    this._threadService = threadService;
+                    this.messages = new Observable_1.Observable(function (observer) { return _this._messagesObservers = observer; }).share();
+                    this._dataStore = { messages: [] };
+                    this._socketOn(); //这里打开了一个socket如果没有验证的话
+                    //不用验证，一旦加载模块就会自动初始化服务，如果用户未登录则服务加载失败，而导航到其他页面并不会使得服务销毁。
+                    //else {
+                    //this._router.navigate(['welcome']);
+                    //}
                 }
                 MessageService.prototype.getByThread = function (threadId) {
                     var _this = this;

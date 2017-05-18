@@ -12,7 +12,7 @@ const response = require('../helpers/response');
 module.exports = function(app){
 app.get(
   '/api/threads',
-  //auth.ensured,
+  auth.ensured,
   threadCtrl.allByUser,
   response.toJSON('threads')
 );

@@ -8,7 +8,7 @@ import { Thread } from '../datatypes/thread';
     selector: 'thread',
     template: `
       <div class="thread-item">
-        <a href="#" [routerLink]="['/messages', thread._id]" data-id="{{thread._id}}">
+        <a href="#" [routerLink]="['/chat/message', thread._id]" data-id="{{thread._id}}">
           {{thread.name}}
           <span *ngIf="selected"> &bull; </span>
         </a>

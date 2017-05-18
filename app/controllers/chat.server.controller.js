@@ -89,7 +89,8 @@ class InstantMessagingModule {
   }
     deliverIM(message, thread) {
     for (let i = 0; i < thread.participants.length; i++) {
-      if (thread.participants[i].toString() !== message.sender._id.toString()) {
+      if (thread.participants[i].toString() !== message.sender._id.toString() &&
+          this.clients[thread.participants[i]]) {
           console.log(thread.participants[i].toString());
           console.log(message.sender.toString());
         this.clients[thread.participants[i]].emit('receive:im', message);

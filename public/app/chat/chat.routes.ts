@@ -5,10 +5,10 @@ import { ChatHelpComponent } from './chat/chat-help.component';
 
 
 export const ChatRoutes: Routes = [{
-  path: 'messages',
+  path: 'chat',
   component: ChatComponent,
   children: [
-    { path: '', component:ChatHelpComponent },
-    { path: ':identifier', component:MessageListComponent},
+    { path: 'message', component:ChatHelpComponent },
+    { path: 'message/:identifier', component:MessageListComponent},
   ],
 }];

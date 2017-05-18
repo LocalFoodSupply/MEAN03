@@ -13,9 +13,10 @@ export class ChatService {
 				private _authenticationService: AuthenticationService) {
 		if (this._authenticationService.isLoggedIn()) {
 			this.socket = io();
-		} else {
-			this._router.navigate(['welcome']);
 		}
+		//else {
+		//	this._router.navigate(['signin']);
+		//}
 	}
 
     on(eventName, callback) {

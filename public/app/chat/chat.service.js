@@ -33,9 +33,9 @@ System.register(["rxjs/Rx", "@angular/core", "@angular/router", "../authenticati
                     if (this._authenticationService.isLoggedIn()) {
                         this.socket = io();
                     }
-                    else {
-                        this._router.navigate(['welcome']);
-                    }
+                    //else {
+                    //	this._router.navigate(['signin']);
+                    //}
                 }
                 ChatService.prototype.on = function (eventName, callback) {
                     if (this.socket) {

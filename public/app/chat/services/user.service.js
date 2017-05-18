@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/http", "../common/headers"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/http", "../common/headers", "../../authentication/authentication.service", "@angular/router"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/http", "../common/headers"], functio
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, http_1, headers_1, UserService;
+    var core_1, http_1, headers_1, authentication_service_1, router_1, UserService;
     return {
         setters: [
             function (core_1_1) {
@@ -21,11 +21,19 @@ System.register(["@angular/core", "@angular/http", "../common/headers"], functio
             },
             function (headers_1_1) {
                 headers_1 = headers_1_1;
+            },
+            function (authentication_service_1_1) {
+                authentication_service_1 = authentication_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }
         ],
         execute: function () {
             UserService = (function () {
-                function UserService(http) {
+                function UserService(http, _router, _authenticationService) {
+                    this._router = _router;
+                    this._authenticationService = _authenticationService;
                     this._http = http;
                     this.users = this._http
                         .get('/api/users', { headers: headers_1.contentHeaders })
@@ -38,7 +46,8 @@ System.register(["@angular/core", "@angular/http", "../common/headers"], functio
             }());
             UserService = __decorate([
                 core_1.Injectable(),
-                __metadata("design:paramtypes", [http_1.Http])
+                __metadata("design:paramtypes", [http_1.Http, router_1.Router,
+                    authentication_service_1.AuthenticationService])
             ], UserService);
             exports_1("UserService", UserService);
             /*getAll() {

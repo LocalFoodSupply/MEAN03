@@ -3,6 +3,8 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { contentHeaders } from '../common/headers';
 import { User } from '../datatypes/user';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {Router} from '@angular/router';
 
 type ObservableUsers = Observable<Array<User>>;
 
@@ -14,7 +16,8 @@ export class UserService {
   private _userObservers: any;
   private _dataStore: { users: Array<User> };
 
-  constructor(http: Http) {
+  constructor(http: Http,private _router:Router,
+				private _authenticationService: AuthenticationService) {
     this._http = http;
     this.users =this._http
           .get('/api/users', { headers: contentHeaders })

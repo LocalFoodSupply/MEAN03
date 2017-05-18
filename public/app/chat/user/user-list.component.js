@@ -72,7 +72,7 @@ System.register(["@angular/core", "@angular/router", "rxjs/ReplaySubject", "../s
                     var _this = this;
                     this._threadService.open({ userId: user._id }).subscribe(function (thread) {
                         //this._threadService.storeThread(thread);
-                        _this._router.navigate(['/messages', thread._id]);
+                        _this._router.navigate(['/chat/message', thread._id]);
                         _this.cleanUp();
                     });
                 };

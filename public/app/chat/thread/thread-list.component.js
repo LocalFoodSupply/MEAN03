@@ -1,4 +1,4 @@
-System.register(["@angular/core", "../services/thread.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "../services/thread.service", "../../authentication/authentication.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "../services/thread.service"], function (expor
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, thread_service_1, ThreadListComponent;
+    var core_1, thread_service_1, authentication_service_1, ThreadListComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -18,18 +18,24 @@ System.register(["@angular/core", "../services/thread.service"], function (expor
             },
             function (thread_service_1_1) {
                 thread_service_1 = thread_service_1_1;
+            },
+            function (authentication_service_1_1) {
+                authentication_service_1 = authentication_service_1_1;
             }
         ],
         execute: function () {
             ThreadListComponent = (function () {
-                function ThreadListComponent(threadService) {
+                function ThreadListComponent(threadService, _authenticationService) {
                     var _this = this;
+                    this._authenticationService = _authenticationService;
                     this.threads = [];
                     this._threadService = threadService;
                     this._threadService.threads.subscribe(function (threads) {
                         _this.threads = threads;
                     });
-                    this._threadService.getAll();
+                    if (this._authenticationService.isLoggedIn()) {
+                        this._threadService.getAll();
+                    }
                 }
                 return ThreadListComponent;
             }());
@@ -40,7 +46,8 @@ System.register(["@angular/core", "../services/thread.service"], function (expor
                     // changeDetection: ChangeDetectionStrategy.OnPush,
                     template: "\n      <h4>Recent <span class=\"muted\">({{threads.length}})</span></h4>\n      <thread\n        *ngFor=\" let thread of threads\"\n        [thread]=\"thread\">\n      </thread>\n    "
                 }),
-                __metadata("design:paramtypes", [thread_service_1.ThreadService])
+                __metadata("design:paramtypes", [thread_service_1.ThreadService,
+                    authentication_service_1.AuthenticationService])
             ], ThreadListComponent);
             exports_1("ThreadListComponent", ThreadListComponent);
         }

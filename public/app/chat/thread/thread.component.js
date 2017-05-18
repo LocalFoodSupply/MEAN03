@@ -38,7 +38,7 @@ System.register(["@angular/core", "../services/thread.service"], function (expor
                 core_1.Component({
                     inputs: ['thread'],
                     selector: 'thread',
-                    template: "\n      <div class=\"thread-item\">\n        <a href=\"#\" [routerLink]=\"['/messages', thread._id]\" data-id=\"{{thread._id}}\">\n          {{thread.name}}\n          <span *ngIf=\"selected\"> &bull; </span>\n        </a>\n      </div>\n    "
+                    template: "\n      <div class=\"thread-item\">\n        <a href=\"#\" [routerLink]=\"['/chat/message', thread._id]\" data-id=\"{{thread._id}}\">\n          {{thread.name}}\n          <span *ngIf=\"selected\"> &bull; </span>\n        </a>\n      </div>\n    "
                 }),
                 __metadata("design:paramtypes", [thread_service_1.ThreadService])
             ], ThreadComponent);

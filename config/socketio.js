@@ -19,12 +19,9 @@ module.exports = function(server, io, mongoStore) {
             	// Set the Socket.io session information
                 socket.request.session = session;
                let user = socket.request.session.passport.user;
-                if (!user) {
-                     let err = new Error('Unauthorized');
-                      err.type = 'unauthorized';
-                      return next(err);
-                }
+                if (user) {
                 socket.user = {_id: socket.request.session.passport.user};
+                }
                 passport.initialize()(socket.request, {}, () => {
                     passport.session()(socket.request, {}, () => {
                         if (socket.request.user) {

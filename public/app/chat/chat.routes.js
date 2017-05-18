@@ -16,11 +16,11 @@ System.register(["./chat.component", "./message/message-list.component", "./chat
         ],
         execute: function () {
             exports_1("ChatRoutes", ChatRoutes = [{
-                    path: 'messages',
+                    path: 'chat',
                     component: chat_component_1.ChatComponent,
                     children: [
-                        { path: '', component: chat_help_component_1.ChatHelpComponent },
-                        { path: ':identifier', component: message_list_component_1.MessageListComponent },
+                        { path: 'message', component: chat_help_component_1.ChatHelpComponent },
+                        { path: 'message/:identifier', component: message_list_component_1.MessageListComponent },
                     ],
                 }]);
         }

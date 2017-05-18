@@ -6,9 +6,9 @@
 
 <div class="messages-container col content">
     <router-outlet></router-outlet>
-
-    <div class="message-form-container">
-        <message-form></message-form>
+    <div class="message-form-container" [ngSwitch]="_authenticationService.isLoggedIn()">
+        <message-form *ngSwitchCase="true" ></message-form>
+        <!--在未登录前不要加载messageform，避免出错。-->
     </div>
 </div>
 

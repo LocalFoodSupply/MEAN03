@@ -63,7 +63,7 @@ export class UserListComponent  {
   openThread(event, user: User) {
     this._threadService.open({ userId: user._id }).subscribe(thread => {
       //this._threadService.storeThread(thread);
-      this._router.navigate(['/messages', thread._id]);
+      this._router.navigate(['/chat/message', thread._id]);
       this.cleanUp();
     });
   }
